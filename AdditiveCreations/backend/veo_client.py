@@ -1,13 +1,17 @@
 """
-This file abstracts Veo API calls.
-Replace the mock logic with official Veo endpoints when available.
+Veo is NOT publicly available as an API.
+
+This file simulates Veo behavior while keeping
+the interface future-compatible.
 """
 
 import time
 
-def generate_video(image_path, veo_prompt):
-    # Simulated processing delay
-    time.sleep(5)
+def generate_video(image_path: str, veo_prompt: str) -> str:
+    # Simulate generation latency
+    time.sleep(4)
 
-    # Placeholder video URL (replace with real Veo response)
-    return "https://sample-videos.com/video321/mp4/720/big_buck_bunny_720p_1mb.mp4"
+    # Placeholder demo video
+    return (
+        "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4"
+    )

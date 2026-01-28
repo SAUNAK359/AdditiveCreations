@@ -1,17 +1,21 @@
 import streamlit as st
-from ui.styles import load_css
+from ui.theme import inject_theme
+from config.constants import APP_NAME, TAGLINE, SUPPORTED_STYLES
 
-def render_header():
-    st.markdown(load_css(), unsafe_allow_html=True)
-    st.title("🎬 AdditiveCreations")
-    st.caption("Professional AI Video Generation")
+def render_ui():
+    st.markdown(inject_theme(), unsafe_allow_html=True)
 
-def render_controls():
-    image = st.file_uploader("Upload Reference Image", ["png", "jpg"])
-    prompt = st.text_area("Describe your scene")
+    st.title(f"🎬 {APP_NAME}")
+    st.caption(TAGLINE)
 
-    with st.expander("Advanced Controls"):
-        style = st.selectbox("Style", ["Cinematic", "Anime", "Photorealistic"])
+    col1, col2 = st.columns(2)
+
+    with col1:
+        image = st.file_uploader("Reference Image", ["png", "jpg", "jpeg"])
+        prompt = st.text_area("Describe your scene")
+
+    with col2:
+        style = st.selectbox("Style", SUPPORTED_STYLES)
         duration = st.slider("Duration (seconds)", 4, 12, 8)
         fps = st.selectbox("FPS", [24, 30])
 

@@ -1,22 +1,21 @@
 VEO_PROMPT_TEMPLATE = """
-Scene Description:
 {scene}
 
-Camera Motion:
+Camera motion:
 {camera}
 
 Lighting:
 {lighting}
 
-Visual Style:
+Style:
 {style}
 
-Technical Specs:
+Technical constraints:
 - Duration: {duration}s
-- Frame Rate: {fps}fps
-- Quality: Cinematic, ultra-realistic
-- Temporal consistency: high
+- FPS: {fps}
+- Cinematic realism
+- High temporal coherence
 
-Negative Prompt:
-blurry, jitter, distortion, flickering, low quality
+Negative:
+blurry, jitter, artifacts, distortion, flickering
 """

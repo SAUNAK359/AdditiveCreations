@@ -1,31 +1,31 @@
 import streamlit as st
-from ui.layout import render_header, render_controls
-from utils.file_utils import save_uploaded_file
-from backend.video_pipeline import run_pipeline
+from ui.layout import render_ui
+from utils.files import persist_uploaded_file
+from core.pipeline import generate_video_pipeline
 
 st.set_page_config(layout="wide")
 
-render_header()
-
-image, prompt, style, duration, fps = render_controls()
+image, prompt, style, duration, fps = render_ui()
 
 if st.button("Generate Video"):
     if not image or not prompt:
-        st.error("Please upload an image and enter a prompt.")
+        st.error("Image and prompt are required")
     else:
-        image_path = save_uploaded_file(image)
+        image_path = persist_uploaded_file(image)
 
-        with st.spinner("Optimizing prompt & generating video..."):
-            video_url, veo_prompt = run_pipeline(
-                image_path=image_path,
-                user_prompt=prompt,
-                style=style,
-                duration=duration,
-                fps=fps
-            )
+        with st.spinner("Generating cinematic video..."):
+            try:
+                video_url, veo_prompt = generate_video_pipeline(
+                    image_path=image_path,
+                    user_prompt=prompt,
+                    style=style,
+                    duration=duration,
+                    fps=fps
+                )
+                st.video(video_url)
 
-        st.subheader("Generated Video")
-        st.video(video_url)
+            except NotImplementedError as e:
+                st.warning(str(e))
 
-        with st.expander("Veo Optimized Prompt"):
+        with st.expander("Optimized Veo Prompt"):
             st.code(veo_prompt)
