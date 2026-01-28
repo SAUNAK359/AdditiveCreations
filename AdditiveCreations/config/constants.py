@@ -1,5 +1,5 @@
 APP_NAME = "AdditiveCreations"
-TAGLINE = "Professional AI Video Generation"
+TAGLINE = "AI Video Generation"
 
 DEFAULT_DURATION = 8
 DEFAULT_FPS = 24
@@ -9,5 +9,10 @@ SUPPORTED_STYLES = [
     "Photorealistic",
     "Anime",
     "Documentary",
-    "Sci-Fi"
+    "Sci-Fi",
+    "Romantic",
+    "Horror",
+    "Fantasy",
+    "Action",
+    "Comedy"
 ]
